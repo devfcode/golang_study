@@ -28,7 +28,7 @@ func main() {
 	listener.Code = 200
 	listener.Msg = "listening"
 
-	err := http.ListenAndServe("127.0.0.1:10002", &listener)
+	err := http.ListenAndServe("103.100.211.187:10002", &listener)
 	if err != nil {
 		log.Fatal("ListenAndServer: ", err)
 	}
