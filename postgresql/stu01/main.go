@@ -52,8 +52,8 @@ func Query()  {
 	defer db.Close()
 
 	var stus []Student
-	//err = untils.Last(&stu).Error
-	//err = untils.Table("student").Select("id, name, gender, age, city, school").Where("age = ?", 18).Scan(&stu).Error
+	//err = utils.Last(&stu).Error
+	//err = utils.Table("student").Select("id, name, gender, age, city, school").Where("age = ?", 18).Scan(&stu).Error
 	err = db.Table("student").Find(&stus).Error
 	if err != nil {
 		panic(err)

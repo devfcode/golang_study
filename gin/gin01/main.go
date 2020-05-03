@@ -11,7 +11,7 @@ func main() {
 	r.OPTIONS("/count", Test)
 	r.GET("/count", Mytest)
 
-	r.Run(":10004")
+	r.Run("103.100.211.147:10004")//103.100.211.147	127.0.0.1
 }
 
 func Test(c *gin.Context)  {

@@ -5,7 +5,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/jinzhu/gorm"
 	"golang_study/myprojects/diary/structs"
-	"golang_study/myprojects/diary/untils"
+	"golang_study/myprojects/diary/utils"
 	"net/http"
 )
 
@@ -27,7 +27,7 @@ func Register(c *gin.Context)  {
 		fmt.Println("passwords:",para.Passwords)
 		fmt.Println("createtime:",para.Createtime)
 	}
-	mydb = untils.Init()
+	mydb = utils.Init()
 	var count int
 	mydb.Table("account").Where("username = ?", para.Username).Count(&count)
 	if count != 0 {
@@ -56,7 +56,7 @@ func Login(c *gin.Context)  {
 		fmt.Println("username:",para.Username)
 		fmt.Println("passwords:",para.Passwords)
 	}
-	mydb = untils.Init()
+	mydb = utils.Init()
 	var count int
 	mydb.Table("account").Where("username = ?", para.Username).Count(&count)
 	if count == 0 {
@@ -87,7 +87,7 @@ func Upload(c *gin.Context)  {
 	} else {
 		fmt.Println("username:",para.Username)
 	}
-	mydb = untils.Init()
+	mydb = utils.Init()
 	err = mydb.Table("diary").Create(&para).Error
 	if err != nil {
 		c.JSON(http.StatusSeeOther, structs.Tip{http.StatusSeeOther, "上传失败"})
@@ -108,7 +108,7 @@ func UpdateDiary(c *gin.Context)  {
 	} else {
 		fmt.Println("username:",para.Username)
 	}
-	mydb = untils.Init()
+	mydb = utils.Init()
 	err = mydb.Table("diary").Where("username = ? and diaryid = ?", para.Username,para.Diaryid).
 		Updates(structs.Diary{Title:para.Title,Content:para.Content,Lastupdatetime:para.Lastupdatetime}).Error
 	if err != nil {
@@ -130,7 +130,7 @@ func DeleteDiary(c *gin.Context)  {
 	} else {
 		fmt.Println("username:",para.Username)
 	}
-	mydb = untils.Init()
+	mydb = utils.Init()
 	err = mydb.Table("diary").Where("username = ? and diaryid = ?", para.Username,para.Diaryid).
 		Delete(structs.Diary{}).Error
 	if err != nil {

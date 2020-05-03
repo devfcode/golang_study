@@ -192,7 +192,7 @@ func BookManageTable(c *gin.Context)  {
 //用户反馈	客服管理 --- 玩家反馈  回复界面
 /*func GetHistoryRecord(c *gin01.Context)  {
 	user_id := c.Query("user_id")
-	session, c1 := untils.GetConnection("qidian", "chatrecord")
+	session, c1 := utils.GetConnection("qidian", "chatrecord")
 	defer session.Close()
 	var content structs.Content
 	err = c1.Find(bson.M{"user_id":user_id}).Sort("reply_time").All(&content.Data)

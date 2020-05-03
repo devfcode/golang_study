@@ -26,7 +26,7 @@ func InitDB() (db *sql.DB)  {
 	if err != nil {
 		panic(err)
 	}
-	//defer untils.Close()
+	//defer utils.Close()
 
 	err = db.Ping()
 	if err != nil {
