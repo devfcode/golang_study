@@ -11,10 +11,10 @@ import (
 )
 
 const (
-	host     = "localhost"
+	host     = "103.100.211.187"
 	port     = 5432
-	user     = "elm"
-	password = "123456"
+	user     = "postgres"
+	password = "1qaz2wsx"
 	dbname   = "postgres"
 )
 
@@ -38,11 +38,12 @@ func InitDB() (db *gorm.DB) {
 	return db
 }
 
+//使用gorm操作数据库
 func main() {
 	//Query()
-	//Insert()
+	Insert()
 	//Delete()
-	Update()
+	//Update()
 }
 
 func Query()  {

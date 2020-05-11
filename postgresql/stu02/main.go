@@ -11,10 +11,10 @@ import (
 )
 
 const (
-	host     = "localhost"
+	host     = "103.100.211.187"
 	port     = 5432
-	user     = "elm"
-	password = "123456"
+	user     = "postgres"
+	password = "1qaz2wsx"
 	dbname   = "postgres"
 )
 
@@ -45,9 +45,10 @@ type Student struct {
 	School string
 }
 
+//直接使用sql操作数据库,在项目中不建议使用
 func main() {
-	QueryOne()
-	//QueryMany()
+	//QueryOne()
+	QueryMany()
 	//Insert()
 	//Update()
 	//Delete()
