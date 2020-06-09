@@ -16,21 +16,21 @@ func main() {
 	gin.SetMode(gin.ReleaseMode)
 	r := gin.Default()
 	r.GET("/getTest", GetTest)
-	r.POST("/getPost",PostTest)
+	r.POST("/getPost", PostTest)
 	r.POST("/testFormdata", TestFormdata)
 	r.POST("/upload", uploadFile)
-	r.Run("www.anant.club:10004") //103.100.211.147	127.0.0.1    www.anant.club
+	r.Run("www.anant.club:8848") //103.100.211.187	127.0.0.1    www.anant.club
 }
 
 //POST 提交form表单
-func TestFormdata(c *gin.Context)  {
-	username  := c.PostForm("username")
-	area :=  c.PostForm("area")
+func TestFormdata(c *gin.Context) {
+	username := c.PostForm("username")
+	area := c.PostForm("area")
 	age := c.PostForm("age")
 	action := c.PostForm("action")
 
 	if username == "" || area == "" || username == "" || age == "" || action == "" {
-		c.JSON(402,mystruct.Tip{401,"格式错误"})
+		c.JSON(402, mystruct.Tip{401, "格式错误"})
 		return
 	}
 
@@ -60,12 +60,12 @@ func PostTest(c *gin.Context) {
 	err := c.BindJSON(&userInfo)
 	if err != nil {
 		fmt.Println(err)
-		c.JSON(403,mystruct.Tip{403,"参数格式不对"})
+		c.JSON(403, mystruct.Tip{403, "参数格式不对"})
 		return
 	}
 	fmt.Println(userInfo)
 
-	if userInfo.Username == "Dio" && userInfo.Argot == "You are geat!"  {
+	if userInfo.Username == "Dio" && userInfo.Argot == "You are geat!" {
 		var content mystruct.MyContent
 		content.Id = rand.Int()
 		content.Username = "Dio Brand"
@@ -77,11 +77,11 @@ func PostTest(c *gin.Context) {
 	}
 
 	if userInfo.Argot != "You are geat!" {
-		c.JSON(401,mystruct.Tip{401,"你的暗号不对"})
+		c.JSON(401, mystruct.Tip{401, "你的暗号不对"})
 		return
 	}
 
-	c.JSON(401,mystruct.Tip{401,"你请求成功了，但参数不是我想要的"})
+	c.JSON(401, mystruct.Tip{401, "你请求成功了，但参数不是我想要的"})
 }
 
 //上传文件
@@ -89,7 +89,7 @@ func uploadFile(context *gin.Context) {
 	var result mystruct.Result
 	file, header, err := context.Request.FormFile("file") //获取传过来的文件
 	if err == nil {
-		filename := header.Filename                                           //从header中取得文件名
+		filename := header.Filename                                   //从header中取得文件名
 		out, err := os.Create("../images/uploadedImages/" + filename) //服务器上存储图片的文件夹路径+图片名
 		if err == nil {
 			defer out.Close()
