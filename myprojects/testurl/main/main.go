@@ -13,13 +13,42 @@ import (
 )
 
 func main() {
-	gin.SetMode(gin.ReleaseMode)
+	gin.SetMode(gin.DebugMode)
 	r := gin.Default()
+	r.OPTIONS("/getTest", Test)
 	r.GET("/getTest", GetTest)
+	r.OPTIONS("/getPost", Test)
 	r.POST("/getPost", PostTest)
+	r.OPTIONS("/testFormdata", Test)
 	r.POST("/testFormdata", TestFormdata)
+	r.OPTIONS("/upload", Test)
 	r.POST("/upload", uploadFile)
-	r.Run("www.anant.club:8848") //103.100.211.187	127.0.0.1    www.anant.club
+
+	r.GET("/user_info", GetUser)
+	r.POST("/login", PostUser)
+	r.Run("103.100.211.187:8848") //103.100.211.187	127.0.0.1    www.anant.club
+}
+
+//Retrofit Post
+func PostUser(c *gin.Context) {
+	var user mystruct.User
+	user.Name = c.PostForm("name")
+	user.Num = rand.Int() % 1000
+	user.Password = c.PostForm("password")
+	c.JSON(200, user)
+}
+
+//Retrofit Get
+func GetUser(c *gin.Context) {
+	var user mystruct.User
+	user.Name = c.DefaultQuery("name", "no value")
+	user.Password = c.PostForm("password")
+	user.Num = rand.Int() % 1000
+	c.JSON(200, user)
+}
+
+func Test(c *gin.Context) {
+	c.JSON(200, "opption test is success!")
 }
 
 //POST 提交form表单

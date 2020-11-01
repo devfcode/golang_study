@@ -25,3 +25,10 @@ type UserInfo struct {
 	Argot string 	`bason:"argot" json:"argot"`
 	Num int			`bason"num" json:"num"`
 }
+
+type User struct {
+	Name string `bson:"name" json:"name"`
+	Password string `bason:"password" json:"password"`
+	Argot string 	`bason:"argot" json:"argot"`
+	Num int			`bason"num" json:"num"`
+}
