@@ -142,7 +142,7 @@ func uploadFile(context *gin.Context) {
 		}
 	} else {
 		result.Code = -1
-		result.Msg = "接收表格出错"
+		result.Msg = "接收文件出错"
 	}
 	context.JSON(http.StatusOK, result)
 }
