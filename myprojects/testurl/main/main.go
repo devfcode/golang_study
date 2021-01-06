@@ -15,6 +15,7 @@ import (
 func main() {
 	gin.SetMode(gin.DebugMode)
 	r := gin.Default()
+
 	r.OPTIONS("/getTest", Test)
 	r.GET("/getTest", GetTest)
 	r.OPTIONS("/getPost", Test)
@@ -27,6 +28,8 @@ func main() {
 	r.GET("/user_info", GetUser)
 	r.POST("/login", PostUser)
 	r.Run("103.100.211.187:8848") //103.100.211.187	127.0.0.1    www.anant.club
+	//使用TLS协议
+	//r.RunTLS("103.100.211.187:8848", "/etc/letsencrypt/live/www.anant.club/cert.pem", "/etc/letsencrypt/live/www.anant.club/privkey.pem")
 }
 
 //Retrofit Post
@@ -58,7 +61,7 @@ func TestFormdata(c *gin.Context) {
 	age := c.PostForm("age")
 	action := c.PostForm("action")
 
-	if username == "" || area == "" || username == "" || age == "" || action == "" {
+	if area == "" || username == "" || age == "" || action == "" {
 		c.JSON(402, mystruct.Tip{401, "格式错误"})
 		return
 	}
