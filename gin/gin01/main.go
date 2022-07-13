@@ -11,13 +11,13 @@ func main() {
 	r.OPTIONS("/count", Test)
 	r.GET("/count", Mytest)
 
-	r.Run("103.100.211.187:10004")//103.100.211.187	127.0.0.1
+	r.Run("localhost:10004")
 }
 
-func Test(c *gin.Context)  {
+func Test(c *gin.Context) {
 	c.JSON(200, "opption test is success!")
 }
 
-func Mytest(c *gin.Context)  {
+func Mytest(c *gin.Context) {
 	c.JSON(201, "this is the value!")
 }
